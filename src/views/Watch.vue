@@ -1,7 +1,7 @@
 <template>
     <div class="watch">
       <p>{{message}}</p>
-      <input type="text" v-model="watchedTest">
+      <input type="number" min="1" max="10000000" v-model="watchedTest">
       {{watchedTest}}
     </div>
 </template>
@@ -20,7 +20,10 @@ export default {
     },
     methods: {
         alertWatched(){
-            alert(this.watchedTest)
+            this.addCommas(this.watchedTest)
+        },
+        addCommas(x) {
+            this.watchedTest =  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
         }
     }
 }
